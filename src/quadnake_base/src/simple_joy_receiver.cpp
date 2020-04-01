@@ -22,13 +22,15 @@ class quad_receiver {
 
 quad_receiver::quad_receiver(   ros::NodeHandle* nh   ) : _nh(nh) {
     
-    _sub = nh->subscribe<sensor_msgs::Joy>("joy",1, &quad_receiver::joycallback);
-    _pub = nh->advertise<quadnake_msgs::Drive>("cmd_drive",1,true);
+    //_sub = nh->subscribe<sensor_msgs::Joy>("joy",1, &quad_receiver::joycallback);
+    //_pub = nh->advertise<quadnake_msgs::Drive>("cmd_drive",1,true);
 
 }
 
 void quad_receiver::joycallback( const sensor_msgs::Joy::ConstPtr& joy_msg )
 {
+    quadnake_msgs::Drive sending_msg;
+    
     //select gait mode from joy
     int q_mode = joy_msg->buttons[0];
 
