@@ -22,8 +22,8 @@ class quad_receiver {
 
 quad_receiver::quad_receiver(   ros::NodeHandle* nh   ) : _nh(nh) {
     
-    //_sub = nh->subscribe<sensor_msgs::Joy>("joy",1, &quad_receiver::joycallback);
-    //_pub = nh->advertise<quadnake_msgs::Drive>("cmd_drive",1,true);
+    _sub = _nh->subscribe<sensor_msgs::Joy>("/joystick/joy",1, &quad_receiver::joycallback,this);
+    _pub = _nh->advertise<quadnake_msgs::Drive>("cmd_drive",1,true);
 
 }
 
@@ -35,15 +35,26 @@ void quad_receiver::joycallback( const sensor_msgs::Joy::ConstPtr& joy_msg )
     int q_mode = joy_msg->buttons[0];
 
     //make some value to drive robot
-    float fb_linear = joy_msg->axes[1] * 1.0f;
-    float lr_linear = joy_msg->axes[2] * 1.0f;
-    float angular = joy_msg->axes[0] * 1.0f;
+    float fb_linear = joy_msg->axes[1] * 100.0f;
+    float lr_linear = joy_msg->axes[0] * 100.0f;
+    float angular = joy_msg->axes[3] * 100.0f;
 
     //make some value to adjust platform
 
+
+    //publish msg
+    sending_msg.FORWARD_DRIVE = (int8_t)fb_linear;
+    sending_msg.SIDE_DRIVE = (int8_t)lr_linear;
+
+    _pub.publish(sending_msg);
 }
 
-int main (  int args, char* arge[]  )
+int main (  int argc, char *argv[]  )
 {
-    return 0;
+    ros::init(argc,argv, "quadnake_joy_receiver");
+
+    ros::NodeHandle nh;
+    quad_receiver qr(&nh);
+
+    ros::spin();
 }
