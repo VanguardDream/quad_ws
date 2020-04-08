@@ -9,7 +9,9 @@
                 "/opt/ros/melodic/include/**",
                 "/home/bong/quad_ws/src/python_test/include/**",
                 "/usr/include/**",
-                "/home/bong/quad_ws/devel/include/**"
+                "/home/bong/quad_ws/devel/include/**",
+                "../include/**",
+                "../../include/**"
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",
