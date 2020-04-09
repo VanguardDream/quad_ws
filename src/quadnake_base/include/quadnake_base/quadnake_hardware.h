@@ -2,40 +2,40 @@
 #define __QUADNAKE_BASE_QUADNAKE_HARDWARE_H
 
 #include "boost/thread.hpp"
-#include "hardware_interface/joint_state_interface.h"
 #include "hardware_interface/joint_command_interface.h"
+#include "hardware_interface/joint_state_interface.h"
 #include "hardware_interface/robot_hw.h"
 #include "quadnake_msgs/Drive.h"
 #include "quadnake_msgs/DriveFeed.h"
+#include "quadnake_msgs/Feed.h"
 #include "realtime_tools/realtime_publisher.h"
 #include "ros/ros.h"
 #include "sensor_msgs/JointState.h"
 
+namespace quadnake_base {
 
-namespace quadnake_base
-{
-
-class QuadnakeHardware : public hardware_interface::RobotHW
-{
+class QuadnakeHardware : public hardware_interface::RobotHW {
 public:
   QuadnakeHardware();
   void copyJointsFromHardware();
   void publishDriveFromController();
 
 private:
-  void feedbackCallback(const quadnake_msgs::DriveFeed::ConstPtr& msg);
+  void feedbackCallback(const quadnake_msgs::Feed::ConstPtr &msg);
 
   ros::NodeHandle nh_;
   ros::Subscriber feedback_sub_;
-  
-  realtime_tools::RealtimePublisher<quadnake_msgs::Drive> cmd_drive_pub_;
+
+  realtime_tools::RealtimePublisher<quadnake_msgs::Feed> cmd_drive_pub_;
 
   hardware_interface::JointStateInterface joint_state_interface_;
   hardware_interface::VelocityJointInterface velocity_joint_interface_;
 
+  hardware_interface::JointCommandInterface
+      joint_cmd_interface; // for testing...
+
   // These are mutated on the controls thread only.
-  struct Leg
-  {
+  struct Leg {
     /*
     double s_position;
     double f_position;
@@ -51,18 +51,17 @@ private:
     double velocity;
     double effort;
     double velocity_command;
+    double position_command;
+    double effort_command;
 
-    Joint() : position(0), velocity(0), effort(0), velocity_command(0)
-    {
-    }
-  }
-  legs_[4];
+    Leg() : position(0), velocity(0), effort(0), velocity_command(0) {}
+  } legs_[4];
 
   // This pointer is set from the ROS thread.
-  quadnake_msgs::DriveFeed::ConstPtr feedback_msg;
+  quadnake_msgs::Feed::ConstPtr feedback_msg;
   boost::mutex feedback_msg_mutex_;
 };
 
-}  // namespace jackal_base
+} // namespace quadnake_base
 
-#endif  // __QUADNAKE_BASE_QUADNAKE_HARDWARE_H
+#endif // __QUADNAKE_BASE_QUADNAKE_HARDWARE_H

@@ -10,6 +10,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   realtime_tools
   sensor_msgs
+  hardware_interface
+  rosserial_server
 )
 
 find_package(Boost REQUIRED COMPONENTS system)
@@ -20,6 +22,7 @@ include_directories(include ${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
 
 add_executable(quadnake_base_node
   src/quadnake_hardware.cpp
+  src/quadnake_base_node.cpp
   )
 
 target_link_libraries(quadnake_base_node ${catkin_LIBRARIES} ${Boost_LIBRARIES})

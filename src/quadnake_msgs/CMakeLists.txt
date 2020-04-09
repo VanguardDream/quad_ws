@@ -12,6 +12,7 @@ add_message_files(
   FILES
   Drive.msg
   DriveFeed.msg
+  Feed.msg
 )
 
 generate_messages(
