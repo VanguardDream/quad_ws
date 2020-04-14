@@ -13,7 +13,7 @@ QuadnakeHardware::QuadnakeHardware()
   for (int i = 0; i < leg_names.size(); i++)
   {
     hardware_interface::JointStateHandle joint_state_handle(leg_names[i], &legs_[i].position, &legs_[i].velocity,
-                                                            &legs_[i].effort);
+                                                            &legs_[i].amplitude);
     joint_state_interface_.registerHandle(joint_state_handle);
 
     hardware_interface::JointHandle joint_handle(joint_state_handle, &legs_[i].velocity_command);
@@ -35,7 +35,7 @@ void QuadnakeHardware::copyJointsFromHardware()
     for (int i = 0; i < 4; i++)
     {
       legs_[i].position = feedback_msg->legs[i].position;
-      legs_[i].effort = feedback_msg->legs[i].current;
+      legs_[i].velocity = feedback_msg->legs[i].current;
     }
   }
 }
