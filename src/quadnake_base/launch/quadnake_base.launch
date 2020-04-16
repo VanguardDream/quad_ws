@@ -1,0 +1,22 @@
+<launch>
+
+<arg name="dev" default="/dev/input/js0"/>
+<arg name="joy_type" default="$(optenv QUAD_JS_PS4 1)"/>
+
+    <group ns="joystick">
+        <group if="$(arg joy_type)">
+            <rosparam command="load" file="$(find quadnake_base)/param/PS4.yaml"/>
+        </group>
+
+        <group unless="$(arg joy_type)">
+            <!-- DO SOMETHING ELSE-->
+        </group>
+
+        <node pkg="joy" type="joy_node" name="joy_node"/>
+    </group>
+
+    <group ns="quadnake">
+        <node pkg="quadnake_base" type="quadnake_base_node" name="hardware_interface"/>
+    </group>
+
+</launch>

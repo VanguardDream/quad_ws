@@ -8,9 +8,12 @@
 #include "quadnake_msgs/Drive.h"
 #include "quadnake_msgs/DriveFeed.h"
 #include "quadnake_msgs/Feed.h"
+#include "quadnake_msgs/LegsDrive.h"
 #include "realtime_tools/realtime_publisher.h"
+#include "ros/console.h"
 #include "ros/ros.h"
 #include "sensor_msgs/JointState.h"
+#include "sensor_msgs/Joy.h"
 
 namespace quadnake_base
 {
@@ -23,11 +26,13 @@ public:
 
 private:
   void feedbackCallback(const quadnake_msgs::Feed::ConstPtr &msg);
+  void joyCallback(const sensor_msgs::Joy::ConstPtr &msg);
 
   ros::NodeHandle nh_;
   ros::Subscriber feedback_sub_;
+  ros::Subscriber joy_sub_;
 
-  realtime_tools::RealtimePublisher<quadnake_msgs::Feed> cmd_drive_pub_;
+  realtime_tools::RealtimePublisher<quadnake_msgs::LegsDrive> cmd_drive_pub_;
 
   hardware_interface::JointStateInterface joint_state_interface_;
   hardware_interface::VelocityJointInterface velocity_joint_interface_;
@@ -55,10 +60,11 @@ private:
     double duty;
 
     // for commanding
+    unsigned char motion_mode;
+    unsigned char n_trough;
     double velocity_command;
     double position_command;
     double amplitude_command;
-    int n_trough;
 
     Leg()
       : position(0)
@@ -73,9 +79,21 @@ private:
     }
   } legs_[4];
 
+  struct joy
+  {
+    double fb_linear;
+    double lr_linear;
+    double angular;
+
+    joy() : fb_linear(0), lr_linear(0), angular(0)
+    {
+    }
+  } joy;
+
   // This pointer is set from the ROS thread.
   quadnake_msgs::Feed::ConstPtr feedback_msg;
   boost::mutex feedback_msg_mutex_;
+  boost::mutex joy_msg_mutex_;
 };
 
 }  // namespace quadnake_base
