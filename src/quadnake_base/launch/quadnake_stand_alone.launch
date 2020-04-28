@@ -19,4 +19,11 @@
         <node pkg="quadnake_base" type="simple_receiver" name="simple_receiver"/>
     </group>
 
+    <group ns="quadnake_hardware">
+        <node pkg="rosserial_arduino" type="serial_node.py" name="quadnake_arduino">
+        <param name="~port"  type="string"   value="/dev/ttyACM0"/>
+        <param name="~baud"  type="int"   value="115200"/>
+        </node>
+    </group>
+
 </launch>

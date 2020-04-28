@@ -7,6 +7,6 @@ int8 SIDE_DRIVE       #Percentage of driving speed for side direction
 int8 ANGULAR_DRIVE    #Percentage of driving speed for angular direction
 
 #Robot platform pose
-int8 ROLL             #Platform adjusting X-axis
-int8 YAW              #Platform adjusting Y-axis
-int8 PITCH            #Platform adjusting Z-axis
+int8 roll             #Platform adjusting X-axis
+int8 yaw              #Platform adjusting Y-axis
+int8 pitch            #Platform adjusting Z-axis

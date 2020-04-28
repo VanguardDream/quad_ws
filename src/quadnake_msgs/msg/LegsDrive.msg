@@ -2,7 +2,7 @@
 LegCommand[4] legs
 
 #Robot platform pose
-int8 ROLL             #Platform adjusting X-axis
-int8 YAW              #Platform adjusting Y-axis
-int8 PITCH            #Platform adjusting Z-axis
+int8 roll             #Platform adjusting X-axis
+int8 yaw              #Platform adjusting Y-axis
+int8 pitch            #Platform adjusting Z-axis
 
