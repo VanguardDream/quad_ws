@@ -1,0 +1,32 @@
+digraph G {
+node [shape=box];
+"base_footprint" [label="base_footprint"];
+"base_link" [label="base_link"];
+"link1" [label="link1"];
+"link2" [label="link2"];
+"link3" [label="link3"];
+"link4" [label="link4"];
+"link5" [label="link5"];
+"link6" [label="link6"];
+"link7" [label="link7"];
+"link8" [label="link8"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_footprint" -> "base_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"base_joint" -> "base_link"
+"base_link" -> "joint1" [label="xyz: 0 0 -0.079 \nrpy: 1.5708 -0 -1.5708"]
+"joint1" -> "link1"
+"link1" -> "joint2" [label="xyz: 0 -0.0675 -0.001 \nrpy: 0 -1.5708 0"]
+"joint2" -> "link2"
+"link2" -> "joint3" [label="xyz: 0 -0.0675 -0.001 \nrpy: 0 1.5708 -0"]
+"joint3" -> "link3"
+"link3" -> "joint4" [label="xyz: 0 -0.0675 -0.001 \nrpy: 0 -1.5708 0"]
+"joint4" -> "link4"
+"link4" -> "joint5" [label="xyz: 0 -0.0675 -0.001 \nrpy: 0 1.5708 -0"]
+"joint5" -> "link5"
+"link5" -> "joint6" [label="xyz: 0 -0.0675 -0.001 \nrpy: 0 -1.5708 0"]
+"joint6" -> "link6"
+"link6" -> "joint7" [label="xyz: 0 -0.0675 -0.001 \nrpy: 0 1.5708 -0"]
+"joint7" -> "link7"
+"link7" -> "joint8" [label="xyz: 0 -0.0675 -0.001 \nrpy: 0 -1.5708 0"]
+"joint8" -> "link8"
+}
