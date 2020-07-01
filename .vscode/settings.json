@@ -2,7 +2,7 @@
     "python.autoComplete.extraPaths": [
         "/opt/ros/melodic/lib/python2.7/dist-packages"
     ],
-    "python.pythonPath": "bin/bin/python",
+    "python.pythonPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64\\python.exe",
     "files.associations": {
         "unordered_map": "cpp",
         "unordered_set": "cpp"
