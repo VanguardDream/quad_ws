@@ -10,7 +10,7 @@
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-file $(find test_urdf)/urdf/test_urdf.SLDASM.urdf 
+    args="-file $(find test_urdf)/urdf/tutorial.urdf 
     -urdf 
     -x 0
     -y 0

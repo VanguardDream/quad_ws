@@ -51,6 +51,7 @@
 
     <joint name="${prefix}_joint" type="continuous">
       <axis xyz="1 0 0" />
+      <xacro:insert_block name="joint_pose" />
     </joint>
 
     <transmission name="${prefix}_joint_trans">
@@ -96,6 +97,7 @@
   </link>
 
   <xacro:node prefix="1">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${PI/4}" />
     <joint>
       <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
       <parent link="base_link"/>
@@ -104,6 +106,7 @@
   </xacro:node>
 
   <xacro:node prefix="2">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${-PI/4}" />
     <joint>
       <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
       <parent link="1_link"/>
@@ -112,6 +115,7 @@
   </xacro:node>
 
   <xacro:node prefix="3">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${PI/4}" />
     <joint>
       <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
       <parent link="2_link"/>
@@ -120,6 +124,7 @@
   </xacro:node>
 
   <xacro:node prefix="4">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${-PI/4}" />
     <joint>
       <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
       <parent link="3_link"/>
@@ -128,6 +133,7 @@
   </xacro:node>
 
   <xacro:node prefix="5">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${PI/4}" />
     <joint>
       <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
       <parent link="4_link"/>
@@ -136,6 +142,7 @@
   </xacro:node>
 
   <xacro:node prefix="6">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${-PI/4}" />
     <joint>
       <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
       <parent link="5_link"/>
@@ -144,6 +151,7 @@
   </xacro:node>
 
   <xacro:node prefix="7">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${PI/4}" />
     <joint>
       <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
       <parent link="6_link"/>
@@ -152,6 +160,7 @@
   </xacro:node>
 
   <xacro:node prefix="8">
+    <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${-origin_to_joint_z}" rpy="0 0 ${-PI/4}" />
     <joint>
       <origin xyz="${origin_to_joint_x} ${origin_to_joint_y} ${origin_to_joint_z}" rpy="0 0 0" />
       <parent link="7_link"/>
