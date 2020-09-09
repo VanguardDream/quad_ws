@@ -36,7 +36,7 @@ void QuadnakeHardware::copyJointsFromHardware()
     for (int i = 0; i < 4; i++)
     {
       legs_[i].motion_mode = feedback_msg->legs[i].MODE;
-      legs_[i].position = feedback_msg->legs[i].POSITION;
+      legs_[i].position = feedback_msg->legs[i].CONTACT_POSITION;
       legs_[i].velocity = feedback_msg->legs[i].VELOCITY;
       legs_[i].amplitude = feedback_msg->legs[i].AMPLITUDE;
       legs_[i].duty = feedback_msg->legs[i].DUTY;

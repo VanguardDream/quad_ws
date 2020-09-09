@@ -15,6 +15,7 @@ add_message_files(
   LegsDrive.msg
   DriveFeed.msg
   Feed.msg
+  MotorFeed.msg
 )
 
 generate_messages(
