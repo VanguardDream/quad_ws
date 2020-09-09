@@ -2,7 +2,7 @@
 
 uint8 ID
 
-int16 CURRENT
+int32 CURRENT
 int32 POSITION
 
 #Error Code
