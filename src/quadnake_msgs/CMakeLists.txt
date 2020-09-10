@@ -11,16 +11,17 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   RemoteDrive.msg
-  LegCommand.msg
   LegsDrive.msg
-  DriveFeed.msg
+  LegCommand.msg
   Feed.msg
+  DriveFeed.msg
   MotorFeed.msg
 )
 
 generate_messages(
   DEPENDENCIES
   std_msgs
+  quadnake_msgs
 )
 
 catkin_package(CATKIN_DEPENDS std_msgs message_runtime)
