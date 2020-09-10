@@ -2,8 +2,10 @@
 
 uint8 ID
 
-int32 CURRENT
+int16 CURRENT
 int32 POSITION
+int32 VELOCITY
+int32 ACCELATION
 
 #Error Code
 bool isFault            #Motor is in fault?
